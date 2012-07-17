@@ -662,6 +662,10 @@ public class GenericSearch {
 	 * @return NXQL conformant specifier.
 	 **/
 	public static String getSearchSpecifierForField(FieldSet fieldSet, Boolean isOrderNotSearch) {
+        
+        final String PRIMARY_VALUE_PATH_SPECIFIER = "/0"; // "/%5B0%5D"; // The URL-encoded expression "/[0]"
+        final String CHILD_ELEMENTS_PATH_SPECIFIER = "/*";
+        
 		//String specifier = fieldname;	// default is just the simple field name
 		String specifier = fieldSet.getServicesTag();
 		//this should be service tag not ID
@@ -669,10 +673,13 @@ public class GenericSearch {
 		// Check for a composite (fooGroupList/fooGroup). For these, the name is the 
 		// leaf, and the first part is held in the "services parent"
 		if(fieldSet.hasServicesParent()) {
-			// Prepend the services parent field, and make the child a wildcard
+			// Prepend the services parent field. Then make the child a wildcard,
+            // if we are conducting a search, or a specifier for the primary value
+            // of the child, if we are ordering on that field.
 			String [] svcsParent = fieldSet.getServicesParent();
 			if(svcsParent[0] != null && !svcsParent[0].isEmpty()) {
-				specifier = svcsParent[0] + (isOrderNotSearch?"/0":"/*");
+				specifier = svcsParent[0]
+                        + (isOrderNotSearch ? PRIMARY_VALUE_PATH_SPECIFIER : CHILD_ELEMENTS_PATH_SPECIFIER);
 			}
 		}
 		
@@ -706,7 +713,7 @@ public class GenericSearch {
 					specifier += "/"+fieldSet.getServicesTag();
 				}
 				else if(isOrderNotSearch) {
-					  specifier += "/0";
+					  specifier += PRIMARY_VALUE_PATH_SPECIFIER;
 				} else{
 					// Leave specifier as is. We just search on the parent name,
 					// as the backend is smart about scalar lists. 
