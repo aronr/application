@@ -39,7 +39,7 @@
 				<include src="domain-procedure-intake.xml" strip-root="yes"/>
 				
                 <row-selector>.csc-recordList-row:</row-selector>
-                <section id="coreInformation">
+                <section>
                     <field id="tenantID" section="collectionspace_core" attributes="GET"></field>
                     <field id="createdBy" ui-search="repeatable" section="collectionspace_core" attributes="GET"></field>
                     <field id="updatedBy" ui-search="repeatable" section="collectionspace_core" attributes="GET"></field>
@@ -147,7 +147,7 @@
                         <field id="currentLocationFitness" autocomplete="vocab-conditionfitness" ui-type="enum">
                             <selector>intake-current-location-fitness</selector>
                         </field>
-                        <field id="currentLocationNote">
+                        <field id="currentLocationNote" ui-search="repeatable">
                             <selector>intake-current-location-note</selector>
                         </field>
                     </repeat>
