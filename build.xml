@@ -2,7 +2,7 @@
 
     <!-- Facilitating rapid development, the 'quick-deploy' target syncs -->
     <!-- (potentially customized) Application layer files directly into the -->
-    <!-- exploded war directory in Tomcat. This avoids the time it takes -->
+    <!-- 'lib' directory in Tomcat. This avoids the time it takes -->
     <!-- to build the project, and to generate and deploy a .war file. -->
 
     <!-- The 'environment' property must be declared to bring the values -->
