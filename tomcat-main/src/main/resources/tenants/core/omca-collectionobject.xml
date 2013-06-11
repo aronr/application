@@ -1,0 +1,28 @@
+<record id="collection-object">
+	
+    <section id="identificationInformation">
+        <repeat id="responsibleDepartments" has-primary="yes">
+            <selector>object-identification-responsible-department</selector>
+            <field id="responsibleDepartment" ui-search="repeatable" mini="search"
+             seperate_ui_container="true">
+                <selector>object-identification-responsible-department</selector>
+                <options>
+                    <option id="">Please select a value</option>
+                    <option id="Art">Art</option>
+                    <option id="History">History</option>
+                    <option id="Science">Science</option>
+                </options>
+            </field>
+        </repeat>
+        <field id="collection" ui-search="repeatable" seperate_ui_container="true">
+            <selector>object-identification-collection</selector>
+            <options>
+                <option id="">Please select a value</option>
+                <option id="Art">Art</option>
+                <option id="History">History</option>
+                <option id="Science">Science</option>
+            </options>
+        </field>
+    </section>
+    
+</record>
